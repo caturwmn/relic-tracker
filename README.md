@@ -1,3 +1,43 @@
+## Tugas 3
+
+1. Form POST berfungsi untuk menambahkan suatu data ke dalam page dimana data dari form tersebut akan disimpan ke server dan tidak bisa dibaca oleh user kecuali data tersebut ditampilkan di page secara langsung
+   sedangkan Form GET akan menghasilkan data yang disimpan dalam bentuk berupa url dari page yang disisipkan permintaan pengguna sehingga bisa mudah di akses jika di bookmark, namun kurang aman karena bisa       
+   dilihat secara langsung melalui url-nya
+
+2. Perbedaannya antara lain
+  - Dalam penyimpanan data, JSON baik untuk menyimpan data terkait objek dan lebih mudah dibaca karena tidak perlu menggunakan end tag, JSON juga bisa menggunakan array dan memiliki performa lebih baik untuk penggunaan AJAX
+  - Jika dibandingkan dengan JSON, XML lebih baik untuk menyimpan suatu kumpulan data yang terstruktur. XML juga lebih aman, bisa memiliki namespace agar tidak terjadi konflik pada data, bisa dimasukkan dengan comment untuk penjelasan kode jika diperlukan, serta bisa memakai Encoding selain UTF-8
+  - HTML Sendiri lebih berguna untuk menjadi format dasar penampilan suatu page karena bisa menampilkan data secara terstruktur dan fungsi utamanya memang untuk ditampilkan pada web (bisa memiliki header dll).
+
+3. JSON Sering digunakan untuk transfer data karena jika dibandingkan dengan XML, JSON lebih ringan terutama jika suatu web memanfaatkan AJAX yang memungkinkan web asinkronus. JSON sendiri berasal dari bahasa JavaScript sehingga proses konversi JSON ke JavaScript cepat.
+
+4. Langkah-Langkah Implementasi:
+- Pertama, membuat sebuah base template dan meroute template tersebut melalui settings.py dan mengatur template lainnya untuk mengikuti (atau mengextend) base template tersebut
+- Lalu, membuat file forms.py yang berisi class form dan class metadata yang berisi informasi tentang jenis item yang akan dibuat beserta atribut-atribut yang perlu diisi secara manual
+- Terus membuat fungsi baru untuk membuat item baru dengan menggunakan forms.py dan model form yang digunakan di views.py dan menghubungkannya ke sebuah template baru yang berisi format penampilan form beserta tombol pembuatan item yang diinginkan.
+- Lalu sesuaikan main.html agar bisa menampilkan data dari item yang dimiliki
+- Lalu membuat 4 fungsi baru dengan memanfaatkan HTTPResponse dan Serializers untuk mengubah data yang diinginkan menjadi data XML, data JSON, serta kedua fungsi tersebut yang menerima id dari data dan melakukan routing pada urls.py agar dapat mengakses tiap halaman yang digunakan oleh fungsi-fungsi tersebut(termasuk create item jika belum
+
+5. Screenshot:
+-main
+![](misc/main.png)
+
+- xml
+![](misc/xml.png)
+
+- xml with id
+![](misc/xmlid.png)
+
+- json
+![](json.png)
+
+- json with id
+![](jsonid.png)
+
+------------------------------
+
+## Tugas 2
+
 # relic-tracker
 [Relic Tracker Link](https://relic-tracker.adaptable.app/main/)
 ---
