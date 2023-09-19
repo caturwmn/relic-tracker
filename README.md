@@ -29,10 +29,10 @@
 ![](misc/xmlid.png)
 
 - json
-![](json.png)
+![](misc/json.png)
 
 - json with id
-![](jsonid.png)
+![](misc/jsonid.png)
 
 ------------------------------
 
