@@ -1,3 +1,22 @@
+## Tugas 4
+
+1. Django UserCreationForm adalah sebuah form yang sudah ada pada django yang berfungsi untuk membuat akun pengguna baru. Keuntungan dari UserCreationForm adalah form tersebut sudah tersedia pada django serta sudah memiliki metode untuk memastikan password yang digunakan sudah aman. Kekurangannya adalah UserCreationForm hanya memiliki field buat nama dan password, sehingga jika diperlukan field baru, maka harus dibuat sebuah form registration yang baru secara manual.
+
+2. Autentikasi adalah proses untuk memverifikasi identitas dari pengguna melalui login. Sedangkan otorisasi adalah suatu proses untuk memastikan apakah seorang pengguna memiliki akses terhadap hal yang akan dilakukan. Kedua hal tersebut penting agar kita dapat memastikan identitas pengguna dan mengirimkan data yang tepat untuk pengguna tersebut serta agar hanya orang yang memiliki wewenang dapat melakukan hal-hal tertentu seperti menghapus akun orang lain jika diperlukan.
+
+3. Cookies adalah suatu data yang dikirimkan oleh server ke browser yang berfungsi sebagai implementasi dari session agar seorang pengguna mendapat data yang sesuai dengan apa yang telah ia lakukan dan agar user tidak perlu login lagi ketika tab browser tertutup. Di dalam django, Cookies di implementasikan sebagai kumpulan data yanga akan dibaca oleh database session pada django dan akan diubah berdasarkan apa yang telah dilakukan oleh user dan akan dikirim lagi ke browser pengguna sebagai cookies
+
+4. Secara default, cookies aman karena hanya bisa diakses oleh browser dan datanya akan dihapus ketika browser ditutup sehingga data dari cookies tidak disimpan di tempat yang bisa dibaca di hardware pengguna.
+
+5. Implementasi yaitu dengan
+- Membuat fungsi register, login dan logout pada views.py dengan mengimport bagian yang perlu (UserCreationForm, authenticate, login, logout, dll) ,melakukan routing fungsi tersebut di urls.py applikasi serta menambahkan halaman untuk register dan login serta tombol tambahan untuk logout di halaman utama serta membuat halaman utama memerlukan login dengan login_required
+- logout (jika belum) lalu buatlah 2 akun dan isi item di tiap akun dengan 3 item dengan logi terlebih dahulu
+- mengubah model dari item agar memiliki parameter berupa user dengan Foreignkey dan mengubah create_relic (atau item) untuk menerima user yang menambahkan item sebagai pemilik item tersebut dan membuat show_main hanya menunjukan item pengguna
+- Mengimport datetime pada views.py lalu menambahkan cookies pada response ketika user valid dengan response.set_cookie('nama cookie', waktu dengan datetime) dan menambahkan last login untuk menampilkan siapa yang terakhir login di show main dan menambahkannya di template main serta membuat fungsi logout menghapus cookies
+
+
+ ------------------------------
+
 ## Tugas 3
 
 1. Form POST berfungsi untuk menambahkan suatu data ke dalam page dimana data dari form tersebut akan disimpan ke server dan tidak bisa dibaca oleh user kecuali data tersebut ditampilkan di page secara langsung
