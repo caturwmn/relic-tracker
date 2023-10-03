@@ -1,3 +1,33 @@
+## Tugas 5
+
+1. Terdapat 3 jenis selector yang dapat digunakan, yaitu:
+- Element selector yang akan mengubah kumpulan element yang memiliki nama yang sama, berguna jika ada suatu jenis element yang tampilannya harus sama seperti paragraf (p)
+- Id selector yang akan mengubah suatu element dengan id tertentu, berguna untuk mengubah sebuah element khusus
+- Class selector yang mengubah element-element dengan class yang sama, berguna untuk mengubah kumpulan element yang tipenya berbeda
+
+2. Terdapat berberapa tag HTML5 yang saya ketahui, yaitu:
+- header yang merupakan tag untuk bagian header dari suatu page
+- nav yang merupakan tag untuk navbar dari suatu page
+- aside yang merupakan tag untuk sidebar pada suatu halaman
+- footer yang merupakan bagian bawah dari suatu page
+- button yang merupakan tag untuk sebuah button
+- meta yang merupakan tag untuk bagian metadata yang digunakan untuk file html tersebut
+- body yang merupakan bagian utama dari page yang akan ditampilkan
+- a yang menghubungkan suatu aksi dengan suatu link
+- href yang merupakan alamat dari aksi yang dilakukan pada suatu element
+
+3. Margin adalah panjang dan/atau lebar dari daerah whitespace yang ada di sekitar suatu element sedangkan padding adalah panjang dan/atau dari daerah yang dialokasikan untuk suatu element. Jika suatu elemen membesar, jarak margin dari element akan tetap, sedangkan jarak daerah kosong dari padding akan berkurang.
+
+4. Tailwind adalah framework CSS dimana tampilan suatu element diatur oleh penggunaan kumpulan kelas. Jika dibandingkan dengan bootstrap, tampilan tailwind lebih fleksibel dan bervariasi dengan ukuran yang lebih ringan, namun lebih susah dipakai daripada bootstrap,sedangkan
+   Bootstrap adalah framework css dimana tampilan suatu element diatur oleh fungsi yang sudah terdefinisikan. Bootstrap kurang fleksibel dan berukuran lebih besar jika dibandingkan dengan tailwind, namun penggunaannya mudah karena hanya perlu menggunakan fungsi-fungsi yang terdefinisi.
+   Tailwind sebaiknya digunakan jika suatu proyek memerlukan tampilan yang sangat spesifik, sedangkan Bootstrap sebaiknya digunakan untuk membuat suatu proyek dengan lebih cepat karena tidak perlu menyusun ulang kode CSS.
+
+5. Implementasinya dengan:
+- Pertama menambahkan fungsi-fungsi tamabahan untuk page di views.py, membuat page html untuk fungsi-fungsi tersebut, lalu melakukan routing di urls.py.
+- Membuat page menjadi responsif dan menambahkan CSS bootstrap dan JS pada metadata template dasar aplikasi atau proyek.
+- Lalu menambahkan komponen lain pada base sesuai keinginan seperti navbar, sidebar, atau teks lainnya
+- Lalu mengatur tampilan komponen pada tiap page sesuai selera di file html masing-masing seperti mengubah tampilan tombol, tabel, tulisan, dll.
+   
 ## Tugas 4
 
 1. Django UserCreationForm adalah sebuah form yang sudah ada pada django yang berfungsi untuk membuat akun pengguna baru. Keuntungan dari UserCreationForm adalah form tersebut sudah tersedia pada django serta sudah memiliki metode untuk memastikan password yang digunakan sudah aman. Kekurangannya adalah UserCreationForm hanya memiliki field buat nama dan password, sehingga jika diperlukan field baru, maka harus dibuat sebuah form registration yang baru secara manual.
