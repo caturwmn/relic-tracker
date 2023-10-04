@@ -1,28 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Relic Tracker Page</h1>
+    <h1>Inventory</h1>
 
     <h5>Name:</h5>
-    <p>{{name}}</p>
+    <h4>{{name}}</h4>
 
     <h5>Class:</h5>
-    <p>{{class}}</p>
+    <h4>{{class}}</h4>
 
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>amount</th>
-        <th>Description</th>
-        <th>Best Rarity</th>
-        <th>Ideal Main Stat</th>
-        <th>Ideal Variant Amount</th>
-    </tr>
-
+<table class="table table-bordered table-striped-columns">
+    <thead>
+        <tr>
+            <th>Name.</th>
+            <th>amount</th>
+            <th>Description</th>
+            <th>Best Rarity</th>
+            <th>Ideal Main Stat</th>
+            <th>Ideal Variant Amount</th>
+        </tr>
+    </thead>
     {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
 
     {% for relic in relics %}
+    <tbody>
         <tr>
             <td>{{relic.name}}</td>
             <td>{{relic.amount}}</td>
@@ -30,7 +32,20 @@
             <td>{{relic.best_rarity}}</td>
             <td>{{relic.ideal_main_stat}}</td>
             <td>{{relic.ideal_variant_amount}}</td>
+            <td>
+                <a href="{% url 'main:edit_relic' relic.pk %}">
+                    <button class="btn btn-secondary">
+                        Edit
+                    </button>
+                </a>
+                <a href="{% url 'main:delete_relic' relic.pk %}">
+                    <button class="btn btn-warning">
+                        Delete
+                    </button>
+                </a>
+            </td>
         </tr>
+    </tbody>
     {% endfor %}
 </table>
 
@@ -38,14 +53,18 @@
 <h5>Sesi terakhir login: {{ last_login }}</h5>
 
 <a href="{% url 'main:create_relic' %}">
-    <button>
+    <button class="btn btn-primary">
         Add New Relic
     </button>
 </a>
 
 <a href="{% url 'main:logout' %}">
-    <button>
+    <button class="btn btn-warning">
         Logout
     </button>
 </a>
 {% endblock content %}
+
+th {
+    background-color: rgb(247, 245, 151);
+}

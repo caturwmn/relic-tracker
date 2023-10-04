@@ -1,10 +1,11 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+
+{% load static %}
 
 {% block content %}
 
-<div class = "login border border-light-subtle rounded-end p-3">
-
-    <h1>Add New Relic</h1>
+<div class="login border border-light-subtle rounded-end p-3">
+    <h1>Edit Relic</h1>
 
     <form method="POST">
         {% csrf_token %}
@@ -13,11 +14,10 @@
             <tr>
                 <td></td>
                 <td>
-                    <input class="btn btn-warning" type="submit" value="Add Product"/>
+                    <input class="btn btn-warning" type="submit" value="Edit Relic"/>
                 </td>
             </tr>
         </table>
     </form>
-
 </div>
 {% endblock %}

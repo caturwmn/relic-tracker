@@ -70,6 +70,22 @@ def create_relic(request):
     context = {'form': form}
     return render(request, "create_relic.html", context)
 
+def edit_Relic(request, id):
+    relic = Relic.objects.get(pk = id)
+    form = RelicForm(request.POST or None, instance=relic)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_relic.html", context)
+
+def delete_relic(request, id):
+    relic = Relic.objects.get(pk = id)
+    relic.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
 def show_xml(request):
     data = Relic.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
