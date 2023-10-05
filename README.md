@@ -1,3 +1,11 @@
+## Tugas 6
+
+1. Synchronous programming merupakan suatu pola pemrograman dimana suatu aksi program hanya dapat berjalan ketika suatu aksi lainnya dilakukan untuk dilakukan sehingga hanya satu proses dapat berjalan dalam suatu waktu, hal ini digambarkan oleh suatu program yang menunggu suatu respon agar bisa melakukan sesuatu. Sedangkan asynchronous programming merupakan pola pemrograman dimana program dapat menjalankan berberapa aksi sekaligus sehingga ketika menunggu suatu respon, program bisa melakukan aksi lain yang diperlukan seperti mengolah data setiap sekian detik atau melakukan sesuatu tanpa perlu respon dari pengguna. 
+
+2. Event driven programming adalah suatu paradigma pemrograman dimana program yang dibuat akan menunggu dan menerima event atau aksi yang dilakukan oleh pengguna dan mengembalikan respon yang sesuai. Salah satu contoh dari penerapannya adalah tombol add sesuatu by AJAX yang apabila ditekan akan menunjukan suatu modal dan tombol add sesuatu pada modal yang apabila ditekan akan membuat sebuah objek baru dan menampilkannya pada tabel.
+
+3. 
+
 ## Tugas 5
 
 1. Terdapat 3 jenis selector yang dapat digunakan, yaitu:
