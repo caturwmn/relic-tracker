@@ -4,7 +4,9 @@
 
 2. Event driven programming adalah suatu paradigma pemrograman dimana program yang dibuat akan menunggu dan menerima event atau aksi yang dilakukan oleh pengguna dan mengembalikan respon yang sesuai. Salah satu contoh dari penerapannya adalah tombol add sesuatu by AJAX yang apabila ditekan akan menunjukan suatu modal dan tombol add sesuatu pada modal yang apabila ditekan akan membuat sebuah objek baru dan menampilkannya pada tabel.
 
-3. 
+3. AJAX menerapkan asynchronous programming dengan mentransfer data ke server ketika sebuah aksi terjadi dan mengubah web page dengan respon yang sesuai tanpa mereload seluruh web page tersebut dimana proses transfer data tersebut terjadi di background web page.
+
+4. 
 
 ## Tugas 5
 
