@@ -6,7 +6,16 @@
 
 3. AJAX menerapkan asynchronous programming dengan mentransfer data ke server ketika sebuah aksi terjadi dan mengubah web page dengan respon yang sesuai tanpa mereload seluruh web page tersebut dimana proses transfer data tersebut terjadi di background web page.
 
-4. 
+4. JQuery merupakan library yang mengimplementasikan AJAX sedangkan Fetch API sudah terintegrasi pada javascript. Selain itu, karena Fetch API menggunakan promise, apabila terjadi response error HTTP maka rexponse tersebut tidak akan ditolak oleh promise. Jika keduanya dibandingkan, Fetch API mungkin pilihan yang paling baik karena Fetch API sudah terintegrasi di dalam java script dan memiliki kode yang lebih simple daripada JQuery.
+
+5. Implementasi dengan:
+- Pertama dengan menambahkan id ke container inventori yang digunakan
+- Lalu membuat sebuah fungsi baru untuk memperoleh data item dalam bentuk json (get item atau relic)dan memanggil fungsi di bagian scripts pada main.html secara asynchronous lalu menambahkan fungsi untuk merefresh isi container sebelumnya dengan data yang diambil dari fungsi get item tadi dan mengubah isi innerHTML-nya dengan format penampilan yang diinginkan, sayangnya href dengan parameter tambahan tidak bisa dipakai secara normal sehingga tombol edit dan delete akan hilang
+- Setelah itu buatlah tombol yang berfungsi untuk menampilkan (atau toggle) sebuah modal dengan id tertentu dimana modal tersebut dibuat agar memuat form serta tombol submit dan close dengan state awal berupa hidden
+- Lalu buat sebuah fungsi add item by ajax pada views.py yang akan menerima setiap masukan dari form tersebut sebagai data untuk item baru (melalui response.POST.get(id)) dan save item tersebut
+- Lakukan routing fungsi tersebut di urls.py ke fungsi di scripts main.html yang akan melakukan fetch fungsi di views yang akan dijalankan apabila tombol add relic pada modal tertekan
+- tambahkan kode untuk memanggil fungsi refresh yang sudah dibuat di bagian scripts
+- lakukan django-admin collectstatic
 
 ## Tugas 5
 
