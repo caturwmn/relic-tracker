@@ -18,7 +18,7 @@ LINK:
 - Lalu buat sebuah fungsi add item by ajax pada views.py yang akan menerima setiap masukan dari form tersebut sebagai data untuk item baru (melalui response.POST.get(id)) dan save item tersebut
 - Lakukan routing fungsi tersebut di urls.py ke fungsi di scripts main.html yang akan melakukan fetch fungsi di views yang akan dijalankan apabila tombol add relic pada modal tertekan
 - tambahkan kode untuk memanggil fungsi refresh yang sudah dibuat di bagian scripts
-- lakukan django-admin collectstatic
+- lakukan py manage.py collectstatic
 
 ## Tugas 5
 
