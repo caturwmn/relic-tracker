@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from main.forms import RelicForm
 from django.urls import reverse
@@ -85,6 +86,33 @@ def delete_relic(request, id):
     relic = Relic.objects.get(pk = id)
     relic.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
+
+def delete_relic_ajax(request, name):
+    relic = get_object_or_404(Relic, name=name)
+    relic.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def get_relic_json(request):
+    relic_item = Relic.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', relic_item))
+
+@csrf_exempt
+def add_relic_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        best_rarity = request.POST.get("best_rarity")
+        ideal_main_stat = request.POST.get("ideal_main_stat")
+        ideal_variant_amount = request.POST.get("ideal_variant_amount")
+        user = request.user
+
+        new_relic = Relic(name=name, amount=amount, description=description, best_rarity=best_rarity, ideal_main_stat=ideal_main_stat, ideal_variant_amount=ideal_variant_amount, user=user)
+        new_relic.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
 
 def show_xml(request):
     data = Relic.objects.all()

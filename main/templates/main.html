@@ -10,44 +10,41 @@
     <h4>{{class}}</h4>
 
 
-<table class="table table-bordered table-striped-columns">
-    <thead>
-        <tr>
-            <th>Name.</th>
-            <th>amount</th>
-            <th>Description</th>
-            <th>Best Rarity</th>
-            <th>Ideal Main Stat</th>
-            <th>Ideal Variant Amount</th>
-        </tr>
-    </thead>
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+<div class="card">
+        <table class="table table-bordered table-striped" id="relic_table"> 
+            <tr>
+                <th>Name.</th>
+                <th>amount</th>
+                <th>Description</th>
+                <th>Best Rarity</th>
+                <th>Ideal Main Stat</th>
+                <th>Ideal Variant Amount</th>
+            </tr>
 
     {% for relic in relics %}
-    <tbody>
-        <tr>
-            <td>{{relic.name}}</td>
-            <td>{{relic.amount}}</td>
-            <td>{{relic.description}}</td>
-            <td>{{relic.best_rarity}}</td>
-            <td>{{relic.ideal_main_stat}}</td>
-            <td>{{relic.ideal_variant_amount}}</td>
-            <td>
-                <a href="{% url 'main:edit_relic' relic.pk %}">
-                    <button class="btn btn-secondary">
-                        Edit
-                    </button>
-                </a>
-                <a href="{% url 'main:delete_relic' relic.pk %}">
-                    <button class="btn btn-warning">
-                        Delete
-                    </button>
-                </a>
-            </td>
-        </tr>
-    </tbody>
+            <tr>
+                <td>{{relic.name}}</td>
+                <td>{{relic.amount}}</td>
+                <td>{{relic.description}}</td>
+                <td>{{relic.best_rarity}}</td>
+                <td>{{relic.ideal_main_stat}}</td>
+                <td>{{relic.ideal_variant_amount}}</td>
+                <td>
+                    <a href="{% url 'main:edit_relic' relic.pk %}">
+                        <button class="btn btn-secondary">
+                            Edit
+                        </button>
+                    </a>
+                    <a href="{% url 'main:delete_relic' relic.pk %}">
+                        <button class="btn btn-warning">
+                            Delete
+                        </button>
+                    </a>
+                </td>
+            </tr>
     {% endfor %}
-</table>
+        </table>
+</div>
 
 <br />
 <h5>Sesi terakhir login: {{ last_login }}</h5>
@@ -63,8 +60,136 @@
         Logout
     </button>
 </a>
-{% endblock content %}
 
-th {
-    background-color: rgb(247, 245, 151);
-}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Product by AJAX
+</button>
+
+
+
+
+<div class="modal fade" tabindex="-1" id="deleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Relic</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered table-striped" id="delete_table"></table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New relic</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="best_rarity" class="col-form-label">Best Rarity:</label>
+                        <input type="number" class="form-control" id="best_rarity" name="best_rarity"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ideal_main_stat" class="col-form-label">Ideal Main Stat:</label>
+                        <input type="text" class="form-control" id="ideal_main_stat" name="ideal_main_stat"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ideal_variant_amount" class="col-form-label">Ideal Variant Amount:</label>
+                        <input type="number" class="form-control" id="ideal_variant_amount" name="ideal_variant_amount"></input>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Relic</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function getRelics() {
+        return fetch("{% url 'main:get_relic_json' %}").then((res) => res.json())
+    }
+    async function refreshRelics() {
+        document.getElementById("relic_table").innerHTML = ""
+        document.getElementById("delete_table").innerHTML = ""
+        const relics = await getRelics()
+        let htmlString2 = ``
+        let htmlString = `
+        <tr>
+            <th>Name.</th>
+            <th>amount</th>
+            <th>Description</th>
+            <th>Best Rarity</th>
+            <th>Ideal Main Stat</th>
+            <th>Ideal Variant Amount</th>
+        </tr>`
+        relics.forEach((item) => {
+            htmlString += `\n<tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.amount}</td>
+            <td>${item.fields.description}</td>
+            <td>${item.fields.best_rarity}</td>
+            <td>${item.fields.ideal_main_stat}</td>
+            <td>${item.fields.ideal_variant_amount}</td>
+        </tr>` 
+            htmlString2 += `
+            <tr>
+                <td>${item.fields.name}</td>
+                <td>
+                    <button class="btn btn-warning" data-bs-dismiss="modal" onclick="deleteRelic(this.innerText)">
+                        ${item.fields.name}
+                    </button>
+                </td>
+            </tr>`
+        })
+
+        document.getElementById("delete_table").innerHTML = htmlString2
+        document.getElementById("relic_table").innerHTML = htmlString
+    }
+
+    function addRelic() {
+        fetch("{% url 'main:add_relic_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshRelics)
+        document.getElementById("form").reset()
+        return false
+    }
+
+    function deleteRelic(name) {
+        fetch("http://localhost:8000/delete-ajax/" + name, {
+            method : "DELETE",
+        }).then(refreshRelics)
+        return false
+    }
+
+    document.getElementById("button_add").onclick = addRelic
+    refreshRelics()
+    
+</script>
+{% endblock content %}
