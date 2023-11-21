@@ -181,8 +181,8 @@
         return false
     }
 
-    function deleteRelic(name) {
-        fetch("http://localhost:8000/delete-ajax/" + name, {
+    function deleteRelic() {
+        fetch("http://localhost:8000/delete-ajax/", {
             method : "DELETE",
         }).then(refreshRelics)
         return false
