@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout as auth_logout
+from main.models import Relic
+import json
 
 @csrf_exempt
 def login(request):
@@ -47,3 +49,25 @@ def logout(request):
         "status": False,
         "message": "Logout gagal."
         }, status=401)
+    
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
+
+        new_relic = Relic.objects.create(
+            user = request.user,
+            name = data["name"],
+            amount = int(data["amount"]),
+            description = data["description"],
+            best_rarity = data["best_rarity"],
+            ideal_main_stat = data["ideal_main_stat"],
+            ideal_variant_amount = int(data["ideal_variant_amount"]),
+        )
+
+        new_relic.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
